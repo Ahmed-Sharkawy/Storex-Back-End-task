@@ -21,7 +21,7 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         $categorys = Category::get();
-        $movies = Movie::with('category')
+        $movies = $this->model->with('category')
             ->when($request->has('name') && $request->get('name'), function ($q) use ($request) {
                 $q->where('title', 'LIKE', "%{$request->get('name')}%");
             })
