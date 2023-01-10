@@ -20,7 +20,6 @@ class MovieController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request);
         $categorys = Category::get();
         $movies = Movie::with('category')
             ->when($request->has('name') && $request->get('name'), function ($q) use ($request) {
