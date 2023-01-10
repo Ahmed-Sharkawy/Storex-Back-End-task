@@ -57,88 +57,67 @@
                             <div class="separator border-gray-200"></div>
                             <!--end::Menu separator-->
                             <!--begin::Form-->
-                            <div class="px-7 py-5">
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Status:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <div>
-                                        <select class="form-select form-select-solid select2-hidden-accessible"
-                                            data-kt-select2="true" data-placeholder="Select option"
-                                            data-dropdown-parent="#kt_menu_61484e54433fa" data-allow-clear="true"
-                                            data-select2-id="select2-data-7-i4ic" tabindex="-1" aria-hidden="true">
-                                            <option data-select2-id="select2-data-9-7m9t"></option>
-                                            <option value="1">Approved</option>
-                                            <option value="2">Pending</option>
-                                            <option value="2">In Process</option>
-                                            <option value="2">Rejected</option>
-                                        </select><span class="select2 select2-container select2-container--bootstrap5"
-                                            dir="ltr" data-select2-id="select2-data-8-bs10" style="width: 100%;"><span
-                                                class="selection"><span
-                                                    class="select2-selection select2-selection--single form-select form-select-solid"
-                                                    role="combobox" aria-haspopup="true" aria-expanded="false"
-                                                    tabindex="0" aria-disabled="false"
-                                                    aria-labelledby="select2-0z4f-container"
-                                                    aria-controls="select2-0z4f-container"><span
-                                                        class="select2-selection__rendered" id="select2-0z4f-container"
-                                                        role="textbox" aria-readonly="true" title="Select option"><span
-                                                            class="select2-selection__placeholder">Select
-                                                            option</span></span><span class="select2-selection__arrow"
-                                                        role="presentation"><b
-                                                            role="presentation"></b></span></span></span><span
-                                                class="dropdown-wrapper" aria-hidden="true"></span></span>
+                            <div class="px-7 py-3">
+                                <form action="{{ route('movies.index') }}" method="get">
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-form-label fw-bold fs-6">Name</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                            <input type="text" name="name"
+                                                class="form-control form-control-lg form-control-solid" placeholder="Name">
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Member Type:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Options-->
-                                    <div class="d-flex">
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                            <input class="form-check-input" type="checkbox" value="1">
-                                            <span class="form-check-label">Author</span>
-                                        </label>
-                                        <!--end::Options-->
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="2"
-                                                checked="checked">
-                                            <span class="form-check-label">Customer</span>
-                                        </label>
-                                        <!--end::Options-->
+                                    <!--end::Input group-->
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-10">
+                                        <!--begin::Label-->
+                                        <label class="col-form-label fw-bold fs-6">Rate</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                                            <input type="number" name="rate"
+                                                class="form-control form-control-lg form-control-solid" placeholder="Rate">
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Notifications:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            name="notifications" checked="checked">
-                                        <label class="form-check-label">Enabled</label>
+                                    <!--end::Input group-->
+
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fw-bold">Category:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <div>
+                                            <select name="category"
+                                                class="form-select form-select-solid select2-hidden-accessible"
+                                                data-kt-select2="true" data-placeholder="Select option"
+                                                data-dropdown-parent="#kt_menu_61484e54433fa" data-allow-clear="true"
+                                                data-select2-id="select2-data-7-i4ic" tabindex="-1" aria-hidden="true">
+                                                <option data-select2-id="select2-data-9-7m9t"></option>
+                                                @foreach ($categorys as $category)
+                                                    <option value="{{ $category->title }}">{{ $category->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <!--end::Input-->
                                     </div>
-                                    <!--end::Switch-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Actions-->
-                                <div class="d-flex justify-content-end">
-                                    <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                        data-kt-menu-dismiss="true">Reset</button>
-                                    <button type="submit" class="btn btn-sm btn-primary"
-                                        data-kt-menu-dismiss="true">Apply</button>
-                                </div>
-                                <!--end::Actions-->
+                                    <!--end::Input group-->
+
+                                    <!--begin::Actions-->
+                                    <div class="d-flex justify-content-end">
+                                        <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
+                                            data-kt-menu-dismiss="true">Reset</button>
+                                        <button type="submit" class="btn btn-sm btn-primary"
+                                            data-kt-menu-dismiss="true">Apply</button>
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
                             </div>
                             <!--end::Form-->
                         </div>
@@ -146,10 +125,6 @@
                         <!--end::Menu-->
                     </div>
                     <!--end::Wrapper-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-                    <!--end::Button-->
                 </div>
                 <!--end::Actions-->
             </div>

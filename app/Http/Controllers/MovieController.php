@@ -18,10 +18,25 @@ class MovieController extends Controller
         $this->model = new Movie();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Movie::with('category')->get();
-        return view('index', compact('movies'));
+        // dd($request);
+        $categorys = Category::get();
+        $movies = Movie::with('category')
+            ->when($request->has('name') && $request->get('name'), function ($q) use ($request) {
+                $q->where('title', 'LIKE', "%{$request->get('name')}%");
+            })
+            ->when($request->has('rate') && $request->get('rate'), function ($q) use ($request) {
+                $q->where('rate', 'LIKE', "%{$request->get('rate')}%");
+            })
+            ->when($request->has('category') && $request->get('category'), function ($q) use ($request) {
+                $q->whereHas('category',function ($q) use ($request){
+                    $q->where('title', 'LIKE', "%{$request->get('category')}%");
+                });
+            })
+            ->get();
+
+        return view('index', compact('movies', 'categorys'));
     }
 
     public function create()
